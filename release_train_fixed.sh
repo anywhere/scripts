@@ -1,0 +1,3 @@
+#!/bin/bash
+
+BOOT_VERSION=2.2.2.RELEASE ./release_train.sh -v Hoxton.SR1 -p build:2.2.1.RELEASE,commons:2.2.1.RELEASE,function:3.0.1.RELEASE,stream:Horsham.SR1,aws:2.2.1.RELEASE,bus:2.2.0.RELEASE,task:2.2.2.RELEASE,config:2.2.1.RELEASE,netflix:2.2.1.RELEASE,cloudfoundry:2.2.0.RELEASE,kubernetes:1.1.1.RELEASE,openfeign:2.2.1.RELEASE,consul:2.2.1.RELEASE,gateway:2.2.1.RELEASE,security:2.2.0.RELEASE,sleuth:2.2.1.RELEASE,zookeeper:2.2.0.RELEASE,contract:2.2.1.RELEASE,gcp:1.2.1.RELEASE,vault:2.2.1.RELEASE,circuitbreaker:1.0.0.RELEASE,cli:2.2.1.RELEASE --ghpages --auto

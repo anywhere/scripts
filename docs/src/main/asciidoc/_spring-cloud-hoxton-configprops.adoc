@@ -191,18 +191,56 @@
 |spring.cloud.config.server.svn.strict-host-key-checking | true | Reject incoming SSH host keys from remote servers not in the known host list.
 |spring.cloud.config.server.svn.uri |  | URI of remote repository.
 |spring.cloud.config.server.svn.username |  | Username for authentication with remote repository.
+|spring.cloud.config.server.vault.app-role.app-role-path | approle | Mount path of the AppRole authentication backend.
+|spring.cloud.config.server.vault.app-role.role |  | Name of the role, optional, used for pull-mode.
+|spring.cloud.config.server.vault.app-role.role-id |  | The RoleId.
+|spring.cloud.config.server.vault.app-role.secret-id |  | The SecretId.
+|spring.cloud.config.server.vault.authentication |  | 
+|spring.cloud.config.server.vault.aws-ec2.aws-ec2-path | aws-ec2 | Mount path of the AWS-EC2 authentication backend.
+|spring.cloud.config.server.vault.aws-ec2.identity-document | http://169.254.169.254/latest/dynamic/instance-identity/pkcs7 | URL of the AWS-EC2 PKCS7 identity document.
+|spring.cloud.config.server.vault.aws-ec2.nonce |  | Nonce used for AWS-EC2 authentication. An empty nonce defaults to nonce generation.
+|spring.cloud.config.server.vault.aws-ec2.role |  | Name of the role, optional.
+|spring.cloud.config.server.vault.aws-iam.aws-path | aws | Mount path of the AWS authentication backend.
+|spring.cloud.config.server.vault.aws-iam.endpoint-uri |  | STS server URI. @since 2.2
+|spring.cloud.config.server.vault.aws-iam.role |  | Name of the role, optional. Defaults to the friendly IAM name if not set.
+|spring.cloud.config.server.vault.aws-iam.server-name |  | Name of the server used to set {@code X-Vault-AWS-IAM-Server-ID} header in the headers of login requests.
+|spring.cloud.config.server.vault.azure-msi.azure-path | azure | Mount path of the Azure MSI authentication backend.
+|spring.cloud.config.server.vault.azure-msi.role |  | Name of the role.
 |spring.cloud.config.server.vault.backend | secret | Vault backend. Defaults to secret.
 |spring.cloud.config.server.vault.default-key | application | The key in vault shared by all applications. Defaults to application. Set to empty to disable.
+|spring.cloud.config.server.vault.gcp-gce.gcp-path | gcp | Mount path of the Kubernetes authentication backend.
+|spring.cloud.config.server.vault.gcp-gce.role |  | Name of the role against which the login is being attempted.
+|spring.cloud.config.server.vault.gcp-gce.service-account |  | Optional service account id. Using the default id if left unconfigured.
+|spring.cloud.config.server.vault.gcp-iam.credentials.encoded-key |  | The base64 encoded contents of an OAuth2 account private key in JSON format.
+|spring.cloud.config.server.vault.gcp-iam.credentials.location |  | Location of the OAuth2 credentials private key. <p> Since this is a Resource, the private key can be in a multitude of locations, such as a local file system, classpath, URL, etc.
+|spring.cloud.config.server.vault.gcp-iam.gcp-path | gcp | Mount path of the Kubernetes authentication backend.
+|spring.cloud.config.server.vault.gcp-iam.jwt-validity | 15m | Validity of the JWT token.
+|spring.cloud.config.server.vault.gcp-iam.project-id |  | Overrides the GCP project Id.
+|spring.cloud.config.server.vault.gcp-iam.role |  | Name of the role against which the login is being attempted.
+|spring.cloud.config.server.vault.gcp-iam.service-account-id |  | Overrides the GCP service account Id.
 |spring.cloud.config.server.vault.host | 127.0.0.1 | Vault host. Defaults to 127.0.0.1.
+|spring.cloud.config.server.vault.kubernetes.kubernetes-path | kubernetes | Mount path of the Kubernetes authentication backend.
+|spring.cloud.config.server.vault.kubernetes.role |  | Name of the role against which the login is being attempted.
+|spring.cloud.config.server.vault.kubernetes.service-account-token-file | /var/run/secrets/kubernetes.io/serviceaccount/token | Path to the service account token file.
 |spring.cloud.config.server.vault.kv-version | 1 | Value to indicate which version of Vault kv backend is used. Defaults to 1.
 |spring.cloud.config.server.vault.namespace |  | The value of the Vault X-Vault-Namespace header. Defaults to null. This a Vault Enterprise feature only.
 |spring.cloud.config.server.vault.order |  | 
+|spring.cloud.config.server.vault.pcf.instance-certificate |  | Path to the instance certificate (PEM). Defaults to {@code CF_INSTANCE_CERT} env variable.
+|spring.cloud.config.server.vault.pcf.instance-key |  | Path to the instance key (PEM). Defaults to {@code CF_INSTANCE_KEY} env variable.
+|spring.cloud.config.server.vault.pcf.pcf-path | pcf | Mount path of the Kubernetes authentication backend.
+|spring.cloud.config.server.vault.pcf.role |  | Name of the role against which the login is being attempted.
 |spring.cloud.config.server.vault.port | 8200 | Vault port. Defaults to 8200.
 |spring.cloud.config.server.vault.profile-separator | , | Vault profile separator. Defaults to comma.
 |spring.cloud.config.server.vault.proxy |  | HTTP proxy configuration.
 |spring.cloud.config.server.vault.scheme | http | Vault scheme. Defaults to http.
 |spring.cloud.config.server.vault.skip-ssl-validation | false | Flag to indicate that SSL certificate validation should be bypassed when communicating with a repository served over an HTTPS connection.
+|spring.cloud.config.server.vault.ssl.cert-auth-path | cert | Mount path of the TLS cert authentication backend.
+|spring.cloud.config.server.vault.ssl.key-store |  | Trust store that holds certificates and private keys.
+|spring.cloud.config.server.vault.ssl.key-store-password |  | Password used to access the key store.
+|spring.cloud.config.server.vault.ssl.trust-store |  | Trust store that holds SSL certificates.
+|spring.cloud.config.server.vault.ssl.trust-store-password |  | Password used to access the trust store.
 |spring.cloud.config.server.vault.timeout | 5 | Timeout (in seconds) for obtaining HTTP connection, defaults to 5 seconds.
+|spring.cloud.config.server.vault.token |  | Static vault token. Required if {@link #authentication} is {@code TOKEN}.
 |spring.cloud.config.token |  | Security Token passed thru to underlying environment repository.
 |spring.cloud.config.uri | [http://localhost:8888] | The URI of the remote server (default http://localhost:8888).
 |spring.cloud.config.username |  | The username to use (HTTP Basic) when contacting the remote server.
@@ -335,6 +373,7 @@
 |spring.cloud.gateway.httpclient.connect-timeout |  | The connect timeout in millis, the default is 45s.
 |spring.cloud.gateway.httpclient.pool.acquire-timeout |  | Only for type FIXED, the maximum time in millis to wait for aquiring.
 |spring.cloud.gateway.httpclient.pool.max-connections |  | Only for type FIXED, the maximum number of connections before starting pending acquisition on existing ones.
+|spring.cloud.gateway.httpclient.pool.max-idle-time |  | Time in millis after which the channel will be closed. If NULL, there is no max idle time.
 |spring.cloud.gateway.httpclient.pool.name | proxy | The channel pool map name, defaults to proxy.
 |spring.cloud.gateway.httpclient.pool.type |  | Type of pool for HttpClient to use, defaults to ELASTIC.
 |spring.cloud.gateway.httpclient.proxy.host |  | Hostname for proxy configuration of Netty HttpClient.
@@ -584,6 +623,7 @@
 |spring.cloud.kubernetes.discovery.primary-port-name |  | If set then the port with a given name is used as primary when multiple ports are defined for a service.
 |spring.cloud.kubernetes.discovery.service-labels |  | If set, then only the services matching these labels will be fetched from the Kubernetes API server.
 |spring.cloud.kubernetes.discovery.service-name | unknown | The service name of the local instance.
+|spring.cloud.kubernetes.enabled | true | If Kubernetes integration is enabled.
 |spring.cloud.kubernetes.reload.enabled | false | Enables the Kubernetes configuration reload on change.
 |spring.cloud.kubernetes.reload.max-wait-for-restart | 2s | If Restart or Shutdown strategies are used, Spring Cloud Kubernetes waits a random amount of time before restarting. This is done in order to avoid having all instances of the same application restart at the same time. This property configures the maximum of amount of wait time from the moment the signal is received that a restart is needed until the moment the restart is actually triggered
 |spring.cloud.kubernetes.reload.mode |  | Sets the detection mode for Kubernetes configuration reload.
@@ -605,6 +645,7 @@
 |spring.cloud.loadbalancer.cache.ttl | 30s | Time To Live - time counted from writing of the record, after which cache entries are expired, expressed as a {@link Duration}. The property {@link String} has to be in keeping with the appropriate syntax as specified in Spring Boot <code>StringToDurationConverter</code>. @see <a href= "https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/convert/StringToDurationConverter.java">StringToDurationConverter.java</a>
 |spring.cloud.loadbalancer.retry.enabled | true | 
 |spring.cloud.loadbalancer.ribbon.enabled | true | Causes `RibbonLoadBalancerClient` to be used by default.
+|spring.cloud.loadbalancer.zone |  | A {@link String} representation of the <code>zone</code> used for filtering instances by zoned load-balancing implementations.
 |spring.cloud.refresh.enabled | true | Enables autoconfiguration for the refresh scope and associated features.
 |spring.cloud.refresh.extra-refreshable | true | Additional class names for beans to post process into refresh scope.
 |spring.cloud.service-registry.auto-registration.enabled | true | Whether service auto-registration is enabled. Defaults to true.
@@ -674,6 +715,24 @@
 |spring.cloud.stream.kafka.streams.binder.serde-error |  | 
 |spring.cloud.stream.kafka.streams.binder.state-store-retry.backoff-period | 1000 | 
 |spring.cloud.stream.kafka.streams.binder.state-store-retry.max-attempts | 1 | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.batch-timeout |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.buffer-size |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.compression-type |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.configuration |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.error-channel-enabled |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.header-mode |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.header-patterns |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.message-key-expression |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.partition-count |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.partition-key-expression |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.partition-key-extractor-name |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.partition-selector-expression |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.partition-selector-name |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.required-groups |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.sync |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.topic |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.producer.use-native-encoding |  | 
+|spring.cloud.stream.kafka.streams.binder.transaction.transaction-id-prefix |  | 
 |spring.cloud.stream.kafka.streams.bindings |  | 
 |spring.cloud.stream.metrics.export-properties |  | List of properties that are going to be appended to each message. This gets populate by onApplicationEvent, once the context refreshes to avoid overhead of doing per message basis.
 |spring.cloud.stream.metrics.key |  | The name of the metric being emitted. Should be an unique value per application. Defaults to: ${spring.application.name:${vcap.application.name:${spring.config.name:application}}}.
@@ -860,12 +919,13 @@
 |spring.sleuth.async.enabled | true | Enable instrumenting async related components so that the tracing information is passed between threads.
 |spring.sleuth.async.ignored-beans |  | List of {@link java.util.concurrent.Executor} bean names that should be ignored and not wrapped in a trace representation.
 |spring.sleuth.baggage-keys |  | List of baggage key names that should be propagated out of process. These keys will be prefixed with `baggage` before the actual key. This property is set in order to be backward compatible with previous Sleuth versions. @see brave.propagation.ExtraFieldPropagation.FactoryBuilder#addPrefixedFields(String, java.util.Collection)
+|spring.sleuth.circuitbreaker.enabled | true | Enable Spring Cloud CircuitBreaker instrumentation.
 |spring.sleuth.enabled | true | 
 |spring.sleuth.feign.enabled | true | Enable span information propagation when using Feign.
 |spring.sleuth.feign.processor.enabled | true | Enable post processor that wraps Feign Context in its tracing representations.
 |spring.sleuth.grpc.enabled | true | Enable span information propagation when using GRPC.
 |spring.sleuth.http.enabled | true | 
-|spring.sleuth.http.legacy.enabled | false | 
+|spring.sleuth.http.legacy.enabled | false | Enables the legacy Sleuth setup.
 |spring.sleuth.hystrix.strategy.enabled | true | Enable custom HystrixConcurrencyStrategy that wraps all Callable instances into their Sleuth representative - the TraceCallable.
 |spring.sleuth.hystrix.strategy.passthrough | false | When enabled the tracing information is passed to the Hystrix execution threads but spans are not created for each execution.
 |spring.sleuth.integration.enabled | true | Enable Spring Integration sleuth instrumentation.
@@ -957,6 +1017,7 @@
 |stubrunner.stubs-per-consumer | false | Should only stubs for this particular consumer get registered in HTTP server stub.
 |stubrunner.username |  | Repository username.
 |wiremock.placeholders.enabled | true | Flag to indicate that http URLs in generated wiremock stubs should be filtered to add or resolve a placeholder for a dynamic port.
+|wiremock.reset-mappings-after-each-test | false | 
 |wiremock.rest-template-ssl-enabled | false | 
 |wiremock.server.files | [] | 
 |wiremock.server.https-port | -1 | 
